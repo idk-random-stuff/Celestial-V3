@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Celestial Network</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #202020;
+            color: #f2f2f2;
+            text-align: center;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+        }
+
+        .navbar a {
+            color: #f2f2f2;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .icons {
+            display: flex;
+        }
+
+        .navlink {
+            margin: 0 10px;
+        }
+
+        .title {
+            font-size: 36px;
+            margin: 20px 0;
+            text-align: center;
+            color: #ddd;
+        }
+
+        .game-icons {
+            display: flex;
+            justify-content: center; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+            margin: 20px auto; 
+            max-width: 1200px;
+        }
+
+        .game-icon {
+            text-align: center;
+            width: 120px;
+            height: 120px;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .game-icon button {
+            border: none;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .game-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .game-icon p {
+            margin-top: 10px;
+            color: #fff;
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
+
+        .game-icon:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-icon:hover img {
+            transform: scale(1.1);
+        }
+
+        .game-icon:hover p {
+            bottom: 0;
+            opacity: 1;
+        }
+
+      .search-bar {
+          padding: 12px 18px; 
+          margin: 20px auto;
+          width: 80%;
+          max-width: 400px;
+          border: 2px solid #4a4a4a;
+          border-radius: 25px;
+          background-color: #333; 
+          font-size: 16px;
+          color: #fff; 
+          outline: none;
+          transition: all 0.3s ease; 
+      }
+
+      .search-bar:focus {
+          border-color: #66afe9; 
+          box-shadow: 0 0 5px rgba(102, 175, 233, 0.6); 
+      }
+
+      .search-bar::placeholder {
+          color: #999; 
+      }
+    </style>
+</head>
+
+<body>
+  <div class="navbar">
+    <a href="/">
+      <img class="home" src="home.png">
+    </a>
+    <div class="icons">
+      <a class="navlink navlink-games" href="/game.html">Games</a>
+      <a class="navlink navlink-apps" href="/app.html">Apps</a>
+      <a class="navlink navlink-partners" href="/partner.html">Partners</a>
+    </div>
+  </div>
+
+    <input type="text" id="searchInput" class="search-bar" placeholder="Search..." oninput="searchIcons()">
+
+    <div class="game-icons">
+        <div class="game-icon" data-url="/games/sm64.html" data-name="Super Mario 64">
+            <button onclick="redirectToGame(this)">
+                <img src="gameicons/sm64.jpg" alt="Super Mario 64">
+            </button>
+            <p>Super Mario 64</p>
+        </div>
+        <div class="game-icon" data-url="/games/ctr.html" data-name="Cut The Rope">
+            <button onclick="redirectToGame(this)">
+                <img src="gameicons/ctr.jpg" alt="Cut The Rope">
+            </button>
+            <p>Cut The Rope</p>
+        </div>
+
+       <!-- STILL NEED TO DO THIS
+      
+      <div class="game-icon" data-url="/games/fnaf/index.html" data-name="FNAF">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/fnaf.jpg" alt="FNAF">
+          </button>
+          <p>FNAF</p>
+      </div>
+
+-->
+      
+      <div class="game-icon" data-url="/games/mc.html" data-name="Minecraft">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/minecraft.png" alt="Minecraft">
+          </button>
+          <p>Minecraft</p>
+      </div>
+      <div class="game-icon" data-url="/extragames/gdash.html" data-name="Geometry Dash">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/gdash.jpg" alt="Geometry Dash">
+          </button>
+          <p>Geometry Dash</p>
+      </div>
+      <div class="game-icon" data-url="/games/jfll.html" data-name="JustFall.LOL">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/jfall.jpg" alt="JustFall.LOL">
+          </button>
+          <p>JustFall.LOL</p>
+      </div>
+      <div class="game-icon" data-url="/games/fbrd.html" data-name="Flappy Bird">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/flappybird.jpg" alt="Flappy Bird">
+          </button>
+          <p>Flappy Bird</p>
+      </div>
+      <div class="game-icon" data-url="/games/pacman.html" data-name="Pac-Man">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/pacman.png" alt="Pac-Man">
+          </button>
+          <p>Pac-Man</p>
+      </div>
+      <div class="game-icon" data-url="/games/1v1lol.html" data-name="1v1.LOL">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/1v1lol.jpg" alt="1v1.LOL">
+          </button>
+          <p>1v1.LOL</p>
+      </div>
+      <div class="game-icon" data-url="/games/slope/index.html" data-name="Slope">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/slope.jpg" alt="Slope">
+          </button>
+          <p>Slope</p>
+      </div>
+      <div class="game-icon" data-url="/games/tunlrsh.html" data-name="Tunnel Rush">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/tunnelrush.jpg" alt="Tunnel Rush">
+          </button>
+          <p>Tunnel Rush</p>
+      </div>
+      <div class="game-icon" data-url="/games/stman.html" data-name="Stickman Hook">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/stman.jpg" alt="Stickman Hook">
+          </button>
+          <p>Stickman Hook</p>
+      </div>
+      <div class="game-icon" data-url="/games/rbowl.html" data-name="Retro Bowl">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/rbowl.png" alt="Retro Bowl">
+          </button>
+          <p>Retro Bowl</p>
+      </div>
+      <div class="game-icon" data-url="/games/baldi.html" data-name="Baldi">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/baldi.jpg" alt="Baldi">
+          </button>
+          <p>Baldi</p>
+      </div>
+      <div class="game-icon" data-url="/games/bitlife.html" data-name="BitLife">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/bitlife.jpg" alt="BitLife">
+          </button>
+          <p>BitLife</p>
+      </div>
+      <div class="game-icon" data-url="/games/roblox.html" data-name="Roblox">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/roblox.jpg" alt="Roblox">
+          </button>
+          <p>Roblox</p>
+      </div>
+      <div class="game-icon" data-url="/games/dinogame.html" data-name="Dino Game">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/dinogame.png" alt="Dino Game">
+          </button>
+          <p>Dino Game</p>
+      </div>
+      <div class="game-icon" data-url="/games/cclicker.html" data-name="Cookie Clicker">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/cclicker.jpg" alt="Cookie Clicker">
+          </button>
+          <p>Cookie Clicker</p>
+      </div>
+      <div class="game-icon" data-url="/games/amongus.html" data-name="Among Us">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/amongus.png" alt="Among Us">
+          </button>
+          <p>Among Us</p>
+      </div>
+      <div class="game-icon" data-url="/games/rts.html" data-name="Rooftop Snipers">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/rts.jpg" alt="Rooftop Snipers">
+          </button>
+          <p>Rooftop Snipers</p>
+      </div>
+      <div class="game-icon" data-url="/games/totm.html" data-name="Tomb Of The Mask">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/totm.png" alt="Tomb Of The Mask">
+          </button>
+          <p>Tomb Of The Mask</p>
+      </div>
+      <div class="game-icon" data-url="/games/bbs.html" data-name="Basketball Stars">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/bbs.jpg" alt="Basketball Stars">
+          </button>
+          <p>Basketball Stars</p>
+      </div>
+      <div class="game-icon" data-url="/games/bettertt.html" data-name="Territorial.IO">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/bettertt.jpg" alt="Territorial.IO">
+          </button>
+          <p>Territorial.IO</p>
+      </div>
+
+      <!-- BROKEN
+      
+      <div class="game-icon" data-url="/games/stguys.html" data-name="Stumble Guys">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/stguys.jpg" alt="Stumble Guys">
+          </button>
+          <p>Stumble Guys</p>
+      </div>
+
+-->
+      
+      <div class="game-icon" data-url="/games/watermelon.html" data-name="Watermelon">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/watermelon.png" alt="Watermelon">
+          </button>
+          <p>Watermelon</p>
+      </div>
+      <div class="game-icon" data-url="/games/madden.html" data-name="Madden 24 Mobile">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/madden.jpg" alt="Madden 24 Mobile">
+          </button>
+          <p>Madden 24 Mobile</p>
+      </div>
+      <div class="game-icon" data-url="/games/impquiz.html" data-name="The Impossible Quiz">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/impquiz.png" alt="The Impossible Quiz">
+          </button>
+          <p>The Impossible Quiz</p>
+      </div>
+      <div class="game-icon" data-url="/games/mmart.html" data-name="Monkey Mart">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/mmart.jpg" alt="Monkey Mart">
+          </button>
+          <p>Monkey Mart</p>
+      </div>
+      <div class="game-icon" data-url="/games/ssurfers.html" data-name="Subway Surfers">
+          <button onclick="redirectToGame(this)">
+              <img src="gameicons/ssurfers.jpg" alt="Subway Surfers">
+          </button>
+          <p>Subway Surfers</p>
+      </div>
+
+    </div>
+
+    <script>
+        function redirectToGame(button) {
+            var url = button.parentElement.dataset.url;
+            window.location.href = url;
+        }
+
+        function searchIcons() {
+            var input, filter, icons, icon, i, txtValue;
+            input = document.getElementById('searchInput');
+            filter = input.value.toUpperCase();
+            icons = document.querySelectorAll('.game-icon');
+
+            icons.forEach(icon => {
+                txtValue = icon.dataset.name.toUpperCase();
+                if (txtValue.indexOf(filter) > -1) {
+                    icon.style.display = "";
+                } else {
+                    icon.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

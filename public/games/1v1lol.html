@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Celestial Network</title>
+  <link rel="icon" href="images/jmw.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="js/a70619ef6c.js" crossorigin="anonymous"></script>
+  <script src="/index.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #202020;
+      color: #f2f2f2;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 10px 20px;
+      background-color: #333;
+      position: fixed;
+      top: 0;
+      z-index: 999;
+    }
+
+    .navbar a {
+      color: #f2f2f2;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .navbar .logo {
+      height: 30px;
+    }
+
+    .icons {
+      display: flex;
+    }
+
+    .navlink {
+      margin: 0 10px;
+    }
+
+    .title {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #ddd;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #bbb;
+      margin-bottom: 40px;
+    }
+
+    .searchbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 100px;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 700px;
+      position: relative;
+    }
+
+    .input-field {
+      padding: 12px 20px;
+      width: calc(100% - 50px);
+      border-radius: 25px;
+      border: 2px solid #333;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      outline: none;
+      background-color: #333;
+      color: #f2f2f2;
+      margin-right: 10px;
+    }
+
+    #go {
+      padding: 12px 20px;
+      border-radius: 50%;
+      border: none;
+      background-color: #555;
+      color: #f2f2f2;
+      font-size: 16px;
+      cursor: pointer;
+      transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    #go:hover {
+      background-color: #777;
+      transform: scale(1.05);
+    }
+
+    #go i {
+      font-size: 18px;
+    }
+
+    .input-field::placeholder {
+      animation: placeholderFade 1.5s infinite;
+    }
+
+    @keyframes placeholderFade {
+      0%, 100% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .input-field:focus {
+      border-color: #add8e6;
+      box-shadow: 0 0 8px rgba(173, 216, 230, 0.7);
+      transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+      outline: none;
+    }
+
+    .loading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .loading-square {
+      width: 1000px; 
+      height: 750px; 
+      border: 2px solid #fff; 
+      border-radius: 10px; 
+      overflow: hidden; 
+    }
+
+    .loading-square iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .button-bar {
+      background-color: #333;
+      width: calc(1000px + 40px); 
+      border-radius: 10px; 
+      margin: 0 auto; 
+      position: fixed;
+      bottom: 20px; 
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    .button-container {
+      display: flex;
+    }
+
+    .button-container button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      background-color: #555;
+      color: #f2f2f2;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-container button:hover {
+      background-color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="loading-container">
+      <div class="loading-square">
+        <iframe id="app-iframe" src="/gamefiles/1v1.html" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-bar">
+    <div class="button-container">
+      <button id="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+      <button id="fullscreen-btn"><i class="fas fa-expand"></i> Fullscreen</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const fullscreenBtn = document.getElementById("fullscreen-btn");
+      const backBtn = document.getElementById("back-btn");
+      const iframe = document.getElementById("app-iframe");
+
+      fullscreenBtn.addEventListener("click", function() {
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if (iframe.webkitRequestFullscreen) {
+          iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) {
+          iframe.msRequestFullscreen();
+        }
+      });
+
+      backBtn.addEventListener("click", function() {
+        window.location.href = "/game.html";
+      });
+    });
+  </script>
+
+  <script src=""></script>
+  <script src=""></script>
+</body>
+</html>
