@@ -215,7 +215,9 @@
 
   <div class="button-bar">
     <div class="button-container">
+      <p>If it says Unsafe Proxy detected refresh until it works</p>
       <button id="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+      <button id="refresh-btn"><i class="fas fa-sync"></i> Refresh</button>
       <button id="fullscreen-btn"><i class="fas fa-expand"></i> Fullscreen</button>
     </div>
   </div>
@@ -224,6 +226,7 @@
     document.addEventListener("DOMContentLoaded", function() {
       const fullscreenBtn = document.getElementById("fullscreen-btn");
       const backBtn = document.getElementById("back-btn");
+      const refreshBtn = document.getElementById("refresh-btn");
       const iframe = document.getElementById("app-iframe");
 
       fullscreenBtn.addEventListener("click", function() {
@@ -239,10 +242,12 @@
       backBtn.addEventListener("click", function() {
         window.location.href = "/game.html";
       });
+
+      refreshBtn.addEventListener("click", function() {
+        location.reload();
+      });
     });
   </script>
 
-  <script src=""></script>
-  <script src=""></script>
 </body>
 </html>
