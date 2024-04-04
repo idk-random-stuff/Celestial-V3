@@ -135,7 +135,7 @@
   </head>
   <body>
     <div class="navbar">
-      <a href="/">
+      <a href="/home.html">
         <img class="home" src="home.png">
       </a>
       <div class="icons">
@@ -160,6 +160,9 @@
               </button>
               <p>ChatGPT</p>
           </div>
+
+        <!--
+        
         <div class="game-icon" data-url="/apps/discord.html" data-name="Discord">
             <button onclick="redirectToApp(this)">
                 <img src="appicons/discord.png" alt="Discord">
@@ -172,6 +175,9 @@
             </button>
             <p>Now.GG</p>
         </div>
+
+        -->
+        
         <div class="game-icon" data-url="/apps/google.html" data-name="Google">
             <button onclick="redirectToApp(this)">
                 <img src="appicons/ggle.png" alt="Google">
@@ -202,5 +208,14 @@
               });
           }
       </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('keydown', function (e) {
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                e.preventDefault();
+            }
+        });
+    });
+    </script>
   </body>
   </html>
