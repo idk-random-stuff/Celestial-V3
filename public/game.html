@@ -136,7 +136,7 @@
 
 <body>
   <div class="navbar">
-    <a href="/">
+    <a href="/home.html">
       <img class="home" src="home.png">
     </a>
     <div class="icons">
@@ -245,12 +245,18 @@
           </button>
           <p>BitLife</p>
       </div>
+
+      <!--
+      
       <div class="game-icon" data-url="/games/roblox.html" data-name="Roblox">
           <button onclick="redirectToGame(this)">
               <img src="gameicons/roblox.jpg" alt="Roblox">
           </button>
           <p>Roblox</p>
       </div>
+
+      -->
+      
       <div class="game-icon" data-url="/games/dinogame.html" data-name="Dino Game">
           <button onclick="redirectToGame(this)">
               <img src="gameicons/dinogame.png" alt="Dino Game">
@@ -311,12 +317,18 @@
           </button>
           <p>Watermelon</p>
       </div>
+
+      <!--
+      
       <div class="game-icon" data-url="/games/madden.html" data-name="Madden 24 Mobile">
           <button onclick="redirectToGame(this)">
               <img src="gameicons/madden.jpg" alt="Madden 24 Mobile">
           </button>
           <p>Madden 24 Mobile</p>
       </div>
+
+-->
+      
       <div class="game-icon" data-url="/games/impquiz.html" data-name="The Impossible Quiz">
           <button onclick="redirectToGame(this)">
               <img src="gameicons/impquiz.png" alt="The Impossible Quiz">
@@ -360,5 +372,14 @@
             });
         }
     </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener('keydown', function (e) {
+          if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+              e.preventDefault();
+          }
+      });
+  });
+  </script>
 </body>
 </html>
